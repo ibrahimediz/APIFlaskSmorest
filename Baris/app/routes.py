@@ -52,15 +52,7 @@ def getEgitim(egitim_id):
 
 
 @app.delete("/egitim/<string:egitim_id>")
-def egitimSil(egitim_id):
-    try:
-        del egitimler[egitim_id]
-        return {"mesaj":"Eğitim Silindi"}
-    except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
-
-
-        
+def e
 
 
 

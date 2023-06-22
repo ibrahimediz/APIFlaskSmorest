@@ -49,18 +49,30 @@ def getEgitim(egitim_id):
     except KeyError:
         abort(404,message="Eğitim Bulunamadı")
 
-
-
 @app.delete("/egitim/<string:egitim_id>")
-def egitimSil(egitim_id):
+def deleteEgitim(egitim_id):
     try:
         del egitimler[egitim_id]
-        return {"mesaj":"Eğitim Silindi"}
+        return {"message": "Deleted: " + egitim_id}
     except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
+        abort(404,message="Not Found")
+
+@app.put("/egitim/<string:egitim_id>")
+def updateEgitim(egitim_id):
+    try:
+        oldEgitim = egitimler[egitim_id]
+        newEgitim = request.get_json()
+        if ("sure" not in newEgitim or "egitim" not in newEgitim or "birim_id" not in newEgitim):
+            abort(400,message="Bad Request sure,egitim,birim_id parametrelerinin gönderildiğinde emin olun")
+        if newEgitim["birim_id"] not in birimler:
+            return {"mesaj":"Birim Bulunamadı"} , 404
+        egitimData = {**newEgitim,"id":egitim_id}
+        egitimler[egitim_id] = egitimData
+        return egitimData
+    except KeyError:
+        abourt(404,message="Not Found")
 
 
-        
 
 
 

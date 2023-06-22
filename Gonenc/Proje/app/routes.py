@@ -49,18 +49,23 @@ def getEgitim(egitim_id):
     except KeyError:
         abort(404,message="Eğitim Bulunamadı")
 
-
-
 @app.delete("/egitim/<string:egitim_id>")
-def egitimSil(egitim_id):
+def deleteEgitim(egitim_id):
     try:
         del egitimler[egitim_id]
-        return {"mesaj":"Eğitim Silindi"}
+        return {"message": "Deleted: " + egitim_id}
     except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
+        abort(404,message="Not Found")
 
-
+@app.put("/egitim/<string:egitim_id>")
+def updateEgitim(egitim_id):
+    try:
         
+    except KeyError:
+        abourt(404,message="Not Found")
+
+
+
 
 
 

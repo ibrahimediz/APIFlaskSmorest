@@ -1,0 +1,3 @@
+FLASK_APP=websiterun.py
+FLASK_DEBUG=True
+SECRET_KEY=tripanazomigambiyetsiz

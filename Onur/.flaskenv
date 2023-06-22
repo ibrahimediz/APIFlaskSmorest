@@ -1,0 +1,4 @@
+FLASK_APP=websiterun_onur.py
+FLASK_DEBUG=True
+FLASK_RUN_PORT=30001
+SECRET_KEY=tripanazomigambiyetsiz

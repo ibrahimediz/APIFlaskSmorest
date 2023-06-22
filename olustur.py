@@ -4,7 +4,7 @@ fileName = "app"
 metin = """
 """
 for item in liste:
-    fPath = f"/workspace/APIDesign_Flask/Exercises/{item}"
+    fPath = f"/workspace/APIFlaskSmorest/{item}"
     metin = f"""
 \"\"\"
     ilk flask uygulamanızı yazmak ve başlatmak için port numarasını 452{liste.index(item)} kullanabilirsiniz.
@@ -13,7 +13,7 @@ for item in liste:
     """
     if not os.path.exists(fPath):
         os.mkdir(fPath)
-    dosya = open(os.sep.join((fPath,f"{fileName}.py")),"w+")
-    dosya.write(metin)
+    # dosya = open(os.sep.join((fPath,f"{fileName}.py")),"w+")
+    # dosya.write(metin)
 
 
