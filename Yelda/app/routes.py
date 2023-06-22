@@ -59,14 +59,6 @@ def egitimSil(egitim_id):
     except KeyError:
         abort(404,message="Eğitim Bulunamadı")
 
-@app.delete("/egitim/<string:egitim_id>")
-def egitimSil(egitim_id):
-    try:
-        del egitimler[egitim_id]
-        return {"mesaj":"Eğitim Silindi"}
-    except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
-
 
 
 @app.put("/egitim/<string:egitim_id>")
@@ -89,6 +81,11 @@ def birimSil(birim_id):
         return {"mesaj":"Birim Silindi"}
     except KeyError:
         abort(404, message="Birim Bulunamadı")
+
+
+
+
+
 
 # @app.get("/katalog")
 # def katalog_getir():

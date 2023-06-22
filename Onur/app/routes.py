@@ -59,21 +59,6 @@ def deleteEgitim(egitim_id):
 
 @app.put("/egitim/<string:egitim_id>")
 def updateEgitim(egitim_id):
-    try:
-        oldEgitim = egitimler[egitim_id]
-        newEgitim = request.get_json()
-        if ("sure" not in newEgitim or "egitim" not in newEgitim or "birim_id" not in newEgitim):
-            abort(400,message="Bad Request sure,egitim,birim_id parametrelerinin gönderildiğinde emin olun")
-        if newEgitim["birim_id"] not in birimler:
-            return {"mesaj":"Birim Bulunamadı"} , 404
-        egitimData = {**newEgitim,"id":egitim_id}
-        egitimler[egitim_id] = egitimData
-        return egitimData
-    except KeyError:
-        abourt(404,message="Not Found")
-
-@app.put("/egitim/<string:egitim_id>")
-def egitimGuncelle(egitim_id):
     egitimData = request.get_json()
     if "egitim" not in egitimData or "sure" not in egitimData:
         abort(400,message="Bad Request")
@@ -89,9 +74,9 @@ def egitimGuncelle(egitim_id):
 def birimSil(birim_id):
     try:
         del birimler[birim_id]
-        return {"mesaj":"Birim Silindi"}
+        return {"message":"Deleted"}
     except KeyError:
-        abort(404, message="Birim Bulunamadı")
+        abort(404, message="Not Found")
 
 
 

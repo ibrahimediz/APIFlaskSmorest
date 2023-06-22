@@ -57,12 +57,6 @@ def deleteEgitim(egitim_id):
     except KeyError:
         abort(404,message="Not Found")
 
-@app.put("/egitim/<string:egitim_id>")
-def updateEgitim(egitim_id):
-    try:
-        
-    except KeyError:
-        abourt(404,message="Not Found")
 
 
 
