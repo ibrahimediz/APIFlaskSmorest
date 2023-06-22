@@ -72,6 +72,27 @@ def updateEgitim(egitim_id):
     except KeyError:
         abourt(404,message="Not Found")
 
+@app.put("/egitim/<string:egitim_id>")
+def egitimGuncelle(egitim_id):
+    egitimData = request.get_json()
+    if "egitim" not in egitimData or "sure" not in egitimData:
+        abort(400,message="Bad Request")
+    try:
+        egitim = egitimler[egitim_id]
+        egitim |= egitimData
+        return egitim
+    except KeyError:
+        abort(404,message="Not Found")
+
+
+@app.delete("/katalog/<string:birim_id>")
+def birimSil(birim_id):
+    try:
+        del birimler[birim_id]
+        return {"mesaj":"Birim Silindi"}
+    except KeyError:
+        abort(404, message="Birim Bulunamadı")
+
 
 
 
