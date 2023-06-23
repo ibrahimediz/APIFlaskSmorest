@@ -1,4 +1,4 @@
-from app.db import db
+from app.resources.db import db
 
 
 class EgitimModel(db.Model):

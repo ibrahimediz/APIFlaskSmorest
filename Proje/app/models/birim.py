@@ -1,4 +1,4 @@
-from app.db import db
+from app.resources.db import db
 
 class BirimModel(db.Model):
     __tablename__ = "birimler"
@@ -6,4 +6,4 @@ class BirimModel(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     birim = db.Column(db.String(80),unique=True,nullable=True)
 
-    egitimler = db.relationship("EgitimModel",back_populates="birim",lazy="dynamic")
+    egitimler = db.relationship("EgitimModel",back_populates="birim",lazy="dynamic",cascade="all,delete")

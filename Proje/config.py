@@ -9,3 +9,4 @@ class Config(object):
     OPENAPI_SWAGGER_UI_PATH = os.environ.get('OPENAPI_SWAGGER_UI_PATH') or 'never-guess'
     OPENAPI_SWAGGER_UI_URL = os.environ.get('OPENAPI_SWAGGER_UI_URL') or 'never-guess'
     # SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:////data.db'
+    JWT_SECRET_KEY= os.environ.get('JWT_SECRET_KEY') or 'jamiryo'

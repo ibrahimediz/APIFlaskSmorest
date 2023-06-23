@@ -22,3 +22,9 @@ class PlainBirimSchema(Schema):
 class BirimSchema(PlainBirimSchema):
     egitimler = fields.List(fields.Nested(PlainEgitimSchema()),dump_only=True)
     
+
+
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(required=True)
+    password = fields.Str(required=True,load_only=True)
