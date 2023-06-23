@@ -1,12 +1,3 @@
-birimler = {}
-egitimler = {}
-#  1: {
-#         "egitim":"Machine Learning",
-#         "sure":30
-#         },
-#  2:{
-#         "egitim":"Deep Learning",
-#         "sure":35
-#         }
-    
-# }
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()

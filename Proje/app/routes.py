@@ -1,86 +1,86 @@
 from app import app
-from app.db import *
+# from resources.db import *
 import uuid
 from flask import request
 from flask_smorest import abort
 
-@app.get("/katalog/<string:birim_id>")
-def getBirim(birim_id):
-    try:
-        return birimler[birim_id]
-    except KeyError:
-       abort(404,message="Birim Bulunamadı")
+# @app.get("/katalog/<string:birim_id>")
+# def getBirim(birim_id):
+#     try:
+#         return birimler[birim_id]
+#     except KeyError:
+#        abort(404,message="Birim Bulunamadı")
 
-@app.get("/katalog")
-def getBirimler():
-    return {"birimler":list(birimler.values())}
+# @app.get("/katalog")
+# def getBirimler():
+#     return {"birimler":list(birimler.values())}
 
-@app.post("/katalog")
-def postBirim():
-    birimData = request.get_json()
-    if "birim" not in birimData:
-        abort(400,
-        message="Bad Request,Gönderilen JSON data içerisinde Birim Adı Bulunamadı ",)
-    birim_ID = uuid.uuid4().hex
-    birim = {**birimData,"id":birim_ID}
-    birimler[birim_ID] = birim
-    return birim
+# @app.post("/katalog")
+# def postBirim():
+#     birimData = request.get_json()
+#     if "birim" not in birimData:
+#         abort(400,
+#         message="Bad Request,Gönderilen JSON data içerisinde Birim Adı Bulunamadı ",)
+#     birim_ID = uuid.uuid4().hex
+#     birim = {**birimData,"id":birim_ID}
+#     birimler[birim_ID] = birim
+#     return birim
 
-@app.post("/egitim")
-def postEgitim():
-    egitimData = request.get_json()
-    if ("sure" not in egitimData or "egitim" not in egitimData or "birim_id" not in egitimData):
-        abort(400,message="Bad Request sure,egitim,birim_id parametrelerinin gönderildiğinde emin olun")
-    if egitimData["birim_id"] not in birimler:
-        return {"mesaj":"Birim Bulunamadı"} , 404
-    egitimID = uuid.uuid4().hex
-    egitim = {**egitimData,"id":egitimID}
-    egitimler[egitimID] = egitim
-    return egitim
+# @app.post("/egitim")
+# def postEgitim():
+#     egitimData = request.get_json()
+#     if ("sure" not in egitimData or "egitim" not in egitimData or "birim_id" not in egitimData):
+#         abort(400,message="Bad Request sure,egitim,birim_id parametrelerinin gönderildiğinde emin olun")
+#     if egitimData["birim_id"] not in birimler:
+#         return {"mesaj":"Birim Bulunamadı"} , 404
+#     egitimID = uuid.uuid4().hex
+#     egitim = {**egitimData,"id":egitimID}
+#     egitimler[egitimID] = egitim
+#     return egitim
 
-@app.get("/egitim")
-def getEgitimler():
-    return {"egitimler":list(egitimler.values())}
+# @app.get("/egitim")
+# def getEgitimler():
+#     return {"egitimler":list(egitimler.values())}
 
-@app.get("/egitim/<string:egitim_id>")
-def getEgitim(egitim_id):
-    try:
-        return egitimler[egitim_id]
-    except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
-
-
-
-@app.delete("/egitim/<string:egitim_id>")
-def egitimSil(egitim_id):
-    try:
-        del egitimler[egitim_id]
-        return {"mesaj":"Eğitim Silindi"}
-    except KeyError:
-        abort(404,message="Eğitim Bulunamadı")
+# @app.get("/egitim/<string:egitim_id>")
+# def getEgitim(egitim_id):
+#     try:
+#         return egitimler[egitim_id]
+#     except KeyError:
+#         abort(404,message="Eğitim Bulunamadı")
 
 
 
-@app.put("/egitim/<string:egitim_id>")
-def egitimGuncelle(egitim_id):
-    egitimData = request.get_json()
-    if "egitim" not in egitimData or "sure" not in egitimData:
-        abort(400,message="Bad Request")
-    try:
-        egitim = egitimler[egitim_id]
-        egitim |= egitimData
-        return egitim
-    except KeyError:
-        abort(404,message="Egitim Bulunamadı")
+# @app.delete("/egitim/<string:egitim_id>")
+# def egitimSil(egitim_id):
+#     try:
+#         del egitimler[egitim_id]
+#         return {"mesaj":"Eğitim Silindi"}
+#     except KeyError:
+#         abort(404,message="Eğitim Bulunamadı")
 
 
-@app.delete("/katalog/<string:birim_id>")
-def birimSil(birim_id):
-    try:
-        del birimler[birim_id]
-        return {"mesaj":"Birim Silindi"}
-    except KeyError:
-        abort(404, message="Birim Bulunamadı")
+
+# @app.put("/egitim/<string:egitim_id>")
+# def egitimGuncelle(egitim_id):
+#     egitimData = request.get_json()
+#     if "egitim" not in egitimData or "sure" not in egitimData:
+#         abort(400,message="Bad Request")
+#     try:
+#         egitim = egitimler[egitim_id]
+#         egitim |= egitimData
+#         return egitim
+#     except KeyError:
+#         abort(404,message="Egitim Bulunamadı")
+
+
+# @app.delete("/katalog/<string:birim_id>")
+# def birimSil(birim_id):
+#     try:
+#         del birimler[birim_id]
+#         return {"mesaj":"Birim Silindi"}
+#     except KeyError:
+#         abort(404, message="Birim Bulunamadı")
 
 
 
@@ -126,3 +126,33 @@ def birimSil(birim_id):
 #         if kat["birim"] == isim:
 #             return {"egitimler":kat["egitimler"]}
 #     return {"mesaj":"Katalog Bulunamadı"}, 404
+
+
+# class A:
+#     sinif = "A" # class attr
+#     def __init__(self,a):
+#         self.a = a # instance attr
+
+#     def soyleA(self):# instance method 
+#         print(self.a)
+
+#     def __str__(self):
+#         return self.a
+
+#     @classmethod
+#     def sinifMethod(cls):
+#         print(cls.sinif)
+#     @staticmethod
+#     def pi():
+#         return 22/7
+
+# obj1 = A(2)
+# obj1.soyleA() # 2
+# obj2 = A(3)
+# obj2.soyleA() # 3
+# obj1.sinifMethod() # A
+# obj2.sinifMethod() # A
+# A.sinifMethod() # A
+
+# sonuc = str(obj1)
+# print(obj1)

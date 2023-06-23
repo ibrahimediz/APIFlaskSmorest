@@ -1,5 +1,5 @@
 from app import app
-from app.db import *
+from resources.db import *
 import uuid
 from flask import request
 from flask_smorest import abort
