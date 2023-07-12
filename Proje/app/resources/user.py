@@ -5,7 +5,7 @@ from flask_jwt_extended import create_access_token
 
 from .db import db
 from app.models import UserModel
-from schemas import UserSchema
+from app.schemas import UserSchema
 
 blp = Blueprint("Users","users",description="Kullanıcı İşlemleri")
 
